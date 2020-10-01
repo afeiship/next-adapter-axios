@@ -3,7 +3,7 @@
  * description: Adapter based on axios for next.
  * homepage: https://github.com/afeiship/next-adapter-axios
  * version: 1.0.0
- * date: 2020-09-30T03:15:24.560Z
+ * date: 2020-10-01T00:57:20.075Z
  * license: MIT
  */
 
@@ -17,9 +17,10 @@
     extends: NxAbstractRequest,
     methods: {
       request: function (inMethod, inUrl, inData, inOptions) {
-        var data = inMethod.toLowerCase() === 'get' ? { params: inData } : { data: inData };
+        var isGET = inMethod.toLowerCase() === 'get';
+        var data = isGET ? { params: inData } : { data: inData };
         return axios.request(
-          mx.mix(
+          nx.mix(
             {
               method: inMethod,
               url: inUrl
